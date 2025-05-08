@@ -2,24 +2,25 @@
 # Voice pipeline dependencies for the HomeAssistant Voice LLM project
 #
 # - pvporcupine: Wake word detection
-# - openai-whisper: Speech-to-text
-# - coqui-tts: Text-to-speech
-# - resemble-voice: Speaker identification (Resemblyzer)
 # - sounddevice: Audio I/O
 # - numpy: Audio processing
-# - scipy: Audio processing
 # - python-dotenv: Environment variable management
-# - uvicorn: ASGI server
 
 # Core dependencies
 numpy==1.21.6
-scipy==1.7.0
-python-dotenv==0.19.0
-uvicorn==0.15.0
+sounddevice==0.4.6
+pvporcupine==2.1.0
+librosa==0.8.0
+soundfile==0.12.1
 
 # Audio processing
-sounddevice==0.4.4
-pvporcupine==2.1.0
+webrtcvad==2.0.10
+pyaudio==0.2.13
+
+# Utilities
+python-dotenv==1.0.1
+pydantic==2.6.1
+httpx==0.26.0
 
 # PyTorch dependencies
 --extra-index-url https://download.pytorch.org/whl/cpu
@@ -28,4 +29,3 @@ torchaudio==0.9.0
 
 # Speech processing
 openai-whisper
-TTS==0.8.0
