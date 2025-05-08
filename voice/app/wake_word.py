@@ -145,8 +145,11 @@ class WakeWordDetector:
             audio_data = self.audio_queue.get(timeout=1.0)
             
             # Convert to mono if stereo
-            if audio_data.shape[1] > 1:
+            if len(audio_data.shape) > 1 and audio_data.shape[1] > 1:
                 audio_data = np.mean(audio_data, axis=1)
+            
+            # Ensure audio data is 1D
+            audio_data = audio_data.flatten()
             
             # Convert to 16-bit PCM
             audio_int16 = (audio_data * 32767).astype(np.int16)
