@@ -21,11 +21,11 @@
 
 ## 3. Voice Pipeline Development
 - [x] Scaffold the voice pipeline entry point (`voice/app/main.py`).
-- [ ] Implement wake word detection.
-- [ ] Integrate speech-to-text (STT) using Whisper.
+- [x] Implement wake word detection.
+- [x] Integrate speech-to-text (STT) using Whisper.
 - [ ] Integrate text-to-speech (TTS) using Coqui/ElevenLabs.
 - [ ] Implement speaker identification.
-- [ ] Set up audio I/O and buffering.
+- [x] Set up audio I/O and buffering.
 - [ ] Add feedback collection for voice interactions.
 - [ ] Write unit and integration tests.
 

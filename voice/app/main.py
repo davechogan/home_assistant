@@ -8,6 +8,9 @@ import logging
 from pathlib import Path
 from typing import Optional
 import os
+import whisper  # OpenAI Whisper for STT
+import numpy as np
+import sounddevice as sd
 
 from shared.config import config
 
@@ -73,12 +76,45 @@ class VoicePipeline:
         self.is_listening = True
         logger.info("Starting voice pipeline")
         
+        # Load Whisper model once for efficiency
+        stt_model = whisper.load_model("base")
+        logger.info("Loaded Whisper STT model: base")
+        
         try:
             while self.is_listening:
                 # Wait for wake word
                 if await self.wake_word_detector.detect():
                     logger.info("Wake word detected")
-                    # TODO: Implement STT, TTS, and command processing
+                    # --- STT Integration ---
+                    logger.info("Listening for command...")
+                    
+                    # Record audio directly using sounddevice
+                    LISTEN_TIMEOUT = 5  # seconds
+                    rec = sd.rec(
+                        int(LISTEN_TIMEOUT * 16000),
+                        samplerate=16000,
+                        channels=1,
+                        dtype='float32'
+                    )
+                    sd.wait()
+                    
+                    if rec.size == 0:
+                        logger.warning("No audio data captured after wake word.")
+                        continue
+                    
+                    # Convert stereo to mono if needed
+                    if len(rec.shape) > 1:
+                        rec = np.mean(rec, axis=1)
+                    
+                    # Normalize audio
+                    if rec.max() > 1.0 or rec.min() < -1.0:
+                        rec = np.clip(rec, -1.0, 1.0)
+                    
+                    # Transcribe
+                    result = stt_model.transcribe(rec, language='en')
+                    transcript = result.get('text', '').strip()
+                    logger.info(f"Transcribed text: {transcript}")
+                    # TODO: Pass transcript to LLM/command processor
                     
         except Exception as e:
             logger.error(f"Error in voice pipeline: {e}")
