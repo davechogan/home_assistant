@@ -7,49 +7,66 @@
 # SpecStory explanation file
 .specstory/.what-is-this.md
 
-# Python virtual environment
-venv/
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+*.py[cod]
+*$py.class
 *.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# IDE files
+# Virtual Environment
+venv/
+ENV/
+env/
+.env
+.venv
+**/venv/
+**/.env
+
+# IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# Environment variables
-.env.*
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
 
 # Logs
 *.log
 logs/
+log/
 
 # Local development
-.DS_Store
-*.db
 *.sqlite3
-
-# Build and distribution
-dist/
-build/
-*.egg-info/
-
-# Test coverage
+*.db
 .coverage
 htmlcov/
-
-# Jupyter Notebook
-.ipynb_checkpoints
 
 # Audio files
 *.wav
 *.mp3
 *.ogg
+*.flac
+*.m4a
 
 # Model files
 *.bin
@@ -57,3 +74,15 @@ htmlcov/
 *.pt
 *.pth
 *.onnx
+*.dylib
+*.so.*
+*.dll
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Large binary files
+*.dylib
+libtorch*
+libllvm*
