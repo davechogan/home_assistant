@@ -5,7 +5,8 @@
 - [x] Create a virtual environment for Python dependencies.
 - [x] Install core dependencies (FastAPI, uvicorn, etc.).
 - [x] Set up Docker and docker-compose for orchestration.
-- [ ] Configure environment variables and shared config.
+- [x] Set up the database (PostgreSQL) and ORM (SQLAlchemy).
+- [x] Set up shared configuration.
 
 ## 2. Backend Development
 - [x] Scaffold the FastAPI app (`backend/app/main.py`).
@@ -13,7 +14,7 @@
 - [x] Create user routes (`backend/app/api/routes_user.py`).
 - [ ] Build user service and models.
 - [ ] Integrate with Home Assistant API.
-- [x] Set up database (PostgreSQL) and ORM (SQLAlchemy).
+- [ ] Set up database (PostgreSQL) and ORM (SQLAlchemy).
 - [ ] Implement context/memory management.
 - [ ] Add feedback and learning mechanisms.
 - [ ] Write unit and integration tests.
@@ -37,6 +38,7 @@
 - [ ] Write unit and integration tests.
 
 ## 5. Shared Module Development
+- [x] Set up shared configuration.
 - [ ] Define shared types and interfaces.
 - [ ] Create shared configuration and utilities.
 - [ ] Ensure cross-module consistency.

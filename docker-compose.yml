@@ -5,27 +5,40 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend
-      args:
-        DOCKER_DEFAULT_PLATFORM: linux/arm64
-    container_name: ha_backend
-    env_file:
-      - ./shared/config/.env
-    depends_on:
-      - db
-      - chromadb
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: ha_voice_backend
     ports:
       - "8000:8000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/home_assistant
     volumes:
-      - ./backend:/app
-      - backend_data:/app/data
-    restart: unless-stopped
+      - ./shared:/app/shared
+      - ./.env:/app/.env
+    environment:
+      - ENV=development
+      - DEBUG=true
+    depends_on:
+      - postgres
+      - chromadb
 
-  db:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: ha_voice_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./shared:/app/shared
+      - ./.env:/app/.env
+    environment:
+      - ENV=development
+      - DEBUG=true
+    depends_on:
+      - backend
+
+  postgres:
     image: postgres:13
-    container_name: ha_postgres
+    container_name: ha_voice_postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -38,53 +51,17 @@ services:
 
   chromadb:
     image: chromadb/chroma:latest
-    container_name: ha_chromadb
+    container_name: ha_voice_chromadb
     ports:
-      - "8001:8000"
+      - "8002:8000"
     volumes:
-      - chromadb_data:/chroma/data
-    restart: unless-stopped
-
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        DOCKER_DEFAULT_PLATFORM: linux/arm64
-    container_name: ha_frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    restart: unless-stopped
-
-  voice:
-    build:
-      context: ./voice
-      args:
-        DOCKER_DEFAULT_PLATFORM: linux/arm64
-    container_name: ha_voice
-    ports:
-      - "5000:5000"
-    depends_on:
-      - backend
-    volumes:
-      - ./voice:/app
-      - voice_data:/app/data
-    environment:
-      - PYTHONUNBUFFERED=1
+      - chroma_data:/chroma/chroma
     restart: unless-stopped
 
 volumes:
   postgres_data:
     driver: local
-  chromadb_data:
-    driver: local
-  backend_data:
-    driver: local
-  voice_data:
+  chroma_data:
     driver: local
 
 # See each service's README for further setup and configuration details.

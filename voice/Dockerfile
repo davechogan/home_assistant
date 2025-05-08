@@ -1,31 +1,36 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9
+# Use Python 3.9 slim as base image
+FROM python:3.9-slim
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    libsndfile1 \
-    ffmpeg \
     portaudio19-dev \
-    git \
-    cmake \
-    pkg-config \
+    python3-pyaudio \
+    libsndfile1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first to leverage Docker cache
-COPY requirements.txt .
+COPY voice/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
-COPY . .
+# Copy the shared module
+COPY shared /app/shared
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
+# Copy the application code
+COPY voice/app /app/app
+COPY voice/scripts /app/scripts
+
+# Create models directory
+RUN mkdir -p /app/models
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
 
 # Run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["python", "-m", "app.main"]
