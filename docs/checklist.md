@@ -6,7 +6,16 @@
 - [x] Install core dependencies (FastAPI, uvicorn, etc.).
 - [x] Set up Docker and docker-compose for orchestration.
 - [x] Set up the database (PostgreSQL) and ORM (SQLAlchemy).
-- [x] Set up shared configuration.
+  - [x] Define PostgreSQL service in docker-compose
+  - [x] Create database models
+  - [x] Set up SQLAlchemy models
+  - [x] Create test data and validation scripts
+  - [ ] Configure production database connections
+- [ ] Set up shared configuration
+  - [x] Create basic directory structure
+  - [ ] Create environment variables template
+  - [ ] Set up configuration management
+  - [ ] Implement cross-service configuration sharing
 
 ## 2. Backend Development
 - [x] Scaffold the FastAPI app (`backend/app/main.py`).
@@ -14,7 +23,11 @@
 - [x] Create user routes (`backend/app/api/routes_user.py`).
 - [ ] Build user service and models.
 - [ ] Integrate with Home Assistant API.
-- [ ] Set up database (PostgreSQL) and ORM (SQLAlchemy).
+- [x] Set up database models for:
+  - [x] User profiles
+  - [x] Voice interactions
+  - [x] Training data
+  - [x] Model training logs
 - [ ] Implement context/memory management.
 - [ ] Add feedback and learning mechanisms.
 - [ ] Write unit and integration tests.
@@ -23,10 +36,14 @@
 - [x] Scaffold the voice pipeline entry point (`voice/app/main.py`).
 - [x] Implement wake word detection.
 - [x] Integrate speech-to-text (STT) using Whisper.
-- [ ] Integrate text-to-speech (TTS) using Coqui/ElevenLabs.
+- [x] Integrate basic text-to-speech (TTS) using macOS say command
+- [ ] Enhance TTS with Coqui/ElevenLabs for better voice quality
 - [ ] Implement speaker identification.
 - [x] Set up audio I/O and buffering.
-- [ ] Add feedback collection for voice interactions.
+- [x] Add feedback collection structure
+  - [x] Database schema for feedback
+  - [x] Mock data generation
+  - [ ] Real-time feedback collection
 - [ ] Write unit and integration tests.
 
 ## 4. Frontend Development
