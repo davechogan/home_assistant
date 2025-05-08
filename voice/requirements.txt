@@ -1,0 +1,20 @@
+# voice/requirements.txt
+# Voice pipeline dependencies for the HomeAssistant Voice LLM project
+#
+# - pvporcupine: Wake word detection
+# - openai-whisper: Speech-to-text
+# - coqui-tts: Text-to-speech
+# - resemble-voice: Speaker identification (Resemblyzer)
+# - sounddevice: Audio I/O
+# - numpy: Audio processing
+# - scipy: Audio processing
+# - python-dotenv: Environment variable management
+
+pvporcupine
+openai-whisper
+tts
+resemblyzer
+sounddevice
+numpy
+scipy
+python-dotenv

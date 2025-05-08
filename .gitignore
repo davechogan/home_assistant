@@ -1,0 +1,8 @@
+# .gitignore
+# This file specifies files and directories that should be ignored by Git version control.
+# For more information, see: https://git-scm.com/docs/gitignore
+
+# Ignore environment variable files
+.env 
+# SpecStory explanation file
+.specstory/.what-is-this.md

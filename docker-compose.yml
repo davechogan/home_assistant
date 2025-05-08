@@ -1,0 +1,48 @@
+# docker-compose.yml
+# Orchestrates backend, Postgres, ChromaDB, and frontend services for HomeAssistant Voice LLM project
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: ha_backend
+    env_file:
+      - ./shared/config/.env
+    depends_on:
+      - db
+      - chromadb
+    ports:
+      - "8000:8000"
+    # Add volumes and command as needed
+
+  db:
+    image: postgres:15
+    container_name: ha_postgres
+    environment:
+      POSTGRES_USER: ha_user
+      POSTGRES_PASSWORD: ha_password
+      POSTGRES_DB: ha_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: ha_chromadb
+    ports:
+      - "8001:8000"
+    # Configure volumes/env as needed
+
+  frontend:
+    build: ./frontend
+    container_name: ha_frontend
+    ports:
+      - "3000:3000"
+    # Add volumes and command as needed
+
+volumes:
+  postgres_data:
+    driver: local
+
+# See each service's README for further setup and configuration details.

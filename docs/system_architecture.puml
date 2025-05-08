@@ -1,0 +1,49 @@
+@startuml
+!define RECTANGLE class
+
+RECTANGLE Frontend {
+  React UI
+  - VoiceInput
+  - DeviceControl
+  - FeedbackPanel
+  - UserProfile
+}
+
+RECTANGLE Backend {
+  FastAPI
+  - API (User, Device, Voice, Feedback)
+  - LLM Orchestration
+  - Context/Memory
+  - User/Device Services
+  - DB/VectorDB
+}
+
+RECTANGLE VoicePipeline {
+  Wake Word
+  STT
+  TTS
+  Speaker ID
+  Audio I/O
+}
+
+RECTANGLE Shared {
+  Config
+  Types
+  Utils
+}
+
+RECTANGLE HomeAssistantAPI
+RECTANGLE Database
+RECTANGLE VectorDB
+
+Frontend --> Backend : REST API
+Backend --> VoicePipeline : gRPC/REST/Queue
+Backend --> HomeAssistantAPI : Integration
+Backend --> Database : SQL/ORM
+Backend --> VectorDB : Embeddings/Context
+VoicePipeline --> Backend : Voice Events
+Frontend --> Shared
+Backend --> Shared
+VoicePipeline --> Shared
+
+@enduml 

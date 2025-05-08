@@ -1,0 +1,20 @@
+# backend/requirements.txt
+# Core backend dependencies for the HomeAssistant Voice LLM project
+#
+# - FastAPI: Web framework for API
+# - asyncpg: PostgreSQL async driver
+# - SQLAlchemy: ORM for PostgreSQL
+# - chromadb: Vector database for context/memory
+# - langchain: LLM orchestration and memory
+# - pydantic: Data validation
+# - httpx: Async HTTP client
+# - python-dotenv: Environment variable management
+
+fastapi
+asyncpg
+sqlalchemy
+chromadb
+langchain
+pydantic
+httpx
+python-dotenv
