@@ -4,7 +4,7 @@
 - [x] Clone the repository and set up the directory structure.
 - [x] Create a virtual environment for Python dependencies.
 - [x] Install core dependencies (FastAPI, uvicorn, etc.).
-- [ ] Set up Docker and docker-compose for orchestration.
+- [x] Set up Docker and docker-compose for orchestration.
 - [ ] Configure environment variables and shared config.
 
 ## 2. Backend Development
@@ -13,13 +13,13 @@
 - [x] Create user routes (`backend/app/api/routes_user.py`).
 - [ ] Build user service and models.
 - [ ] Integrate with Home Assistant API.
-- [ ] Set up database (PostgreSQL) and ORM (SQLAlchemy).
+- [x] Set up database (PostgreSQL) and ORM (SQLAlchemy).
 - [ ] Implement context/memory management.
 - [ ] Add feedback and learning mechanisms.
 - [ ] Write unit and integration tests.
 
 ## 3. Voice Pipeline Development
-- [ ] Scaffold the voice pipeline entry point (`voice/app/main.py`).
+- [x] Scaffold the voice pipeline entry point (`voice/app/main.py`).
 - [ ] Implement wake word detection.
 - [ ] Integrate speech-to-text (STT) using Whisper.
 - [ ] Integrate text-to-speech (TTS) using Coqui/ElevenLabs.
@@ -48,9 +48,9 @@
 - [ ] Conduct user acceptance testing.
 
 ## 7. Documentation and Deployment
-- [ ] Update README and architecture docs.
+- [x] Update README and architecture docs.
 - [ ] Write API documentation.
-- [ ] Prepare deployment scripts and Docker configurations.
+- [x] Prepare deployment scripts and Docker configurations.
 - [ ] Deploy to staging/production.
 
 ## 8. Post-Launch

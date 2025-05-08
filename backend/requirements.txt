@@ -10,11 +10,12 @@
 # - httpx: Async HTTP client
 # - python-dotenv: Environment variable management
 
-fastapi
-asyncpg
-sqlalchemy
-chromadb
-langchain
-pydantic
-httpx
-python-dotenv
+fastapi==0.109.2
+asyncpg==0.29.0
+sqlalchemy==2.0.27
+chromadb==0.4.22
+langchain==0.1.9
+pydantic==2.6.1
+httpx==0.26.0
+python-dotenv==1.0.1
+uvicorn==0.27.1
